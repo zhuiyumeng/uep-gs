@@ -1,0 +1,243 @@
+======================================================================
+  Experiment 4: AdaptiveFECPipeline Closed-Loop Test
+======================================================================
+
+------------------------------------------------------------
+  Scenario 4.1: Simple Closed Loop
+  Loss: 3% → 6% → 10% (3 frames, 3 RRs each)
+------------------------------------------------------------
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline.optimize: step=1, loss_rate=0.0380, jitter=0.0, rtt=0.0000s, budget=20.00%
+[23:51:17] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.038, budget=20.00%, total_packets=81413, baseline_rec=0.9620
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:17] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 35 candidates (gaussians=1)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 35 candidates (gaussians=356)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 35 candidates (gaussians=5967)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 5 candidates (gaussians=450621)
+[23:51:17] transport_fec_ml.adaptive_fec |   DP result: best_benefit=29.557534, best_parity=16282/16282 (20.00%)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: RS(8,8) recovery=0.9620 parity=0 (vs baseline 0.9620)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: RS(8,7) recovery=0.9653 parity=10 (vs baseline 0.9620)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9907 parity=214 (vs baseline 0.9620)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9907 parity=16058 (vs baseline 0.9620)
+[23:51:17] transport_fec_ml.adaptive_fec |   Final: overhead=20.00%, wrr=0.9906 (baseline=0.9620, Δ=+0.0286)
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline: new policy applied — FECAllocation(overhead=20.00%, wrr=0.9906, baseline=96.2% loss → Δ=+0.0286)
+  LOD 0: RS(8,8) recovery=0.9620 bw=0.0000
+  LOD 1: RS(8,7) recovery=0.9653 bw=0.0001
+  LOD 2: RS(12,10) recovery=0.9907 bw=0.0026
+  LOD 3: RS(12,10) recovery=0.9907 bw=0.1972
+
+  After 3× p=0.03:
+    State loss_rate: 0.0339
+    LOD 0: RS(8,8) rec=0.9620
+    LOD 1: RS(8,7) rec=0.9653
+    LOD 2: RS(12,10) rec=0.9907
+    LOD 3: RS(12,10) rec=0.9907
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline.optimize: step=5, loss_rate=0.0472, jitter=0.0, rtt=0.0000s, budget=20.00%
+[23:51:17] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.047, budget=20.00%, total_packets=81413, baseline_rec=0.9528
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:17] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 34 candidates (gaussians=1)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 34 candidates (gaussians=356)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 34 candidates (gaussians=5967)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 4 candidates (gaussians=450621)
+[23:51:17] transport_fec_ml.adaptive_fec |   DP result: best_benefit=31.201596, best_parity=16273/16282 (19.99%)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: RS(2,1) recovery=0.9978 parity=1 (vs baseline 0.9528)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: RS(8,8) recovery=0.9528 parity=0 (vs baseline 0.9528)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9832 parity=214 (vs baseline 0.9528)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9832 parity=16058 (vs baseline 0.9528)
+[23:51:17] transport_fec_ml.adaptive_fec |   Final: overhead=19.99%, wrr=0.9832 (baseline=0.9528, Δ=+0.0304)
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline: new policy applied — FECAllocation(overhead=19.99%, wrr=0.9832, baseline=95.3% loss → Δ=+0.0304)
+  LOD 0: RS(2,1) recovery=0.9978 bw=0.0000
+  LOD 1: RS(8,8) recovery=0.9528 bw=0.0000
+  LOD 2: RS(12,10) recovery=0.9832 bw=0.0026
+  LOD 3: RS(12,10) recovery=0.9832 bw=0.1972
+
+  After 3× p=0.06:
+    State loss_rate: 0.0511
+    LOD 0: RS(2,1) rec=0.9978
+    LOD 1: RS(8,8) rec=0.9528
+    LOD 2: RS(12,10) rec=0.9832
+    LOD 3: RS(12,10) rec=0.9832
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline.optimize: step=7, loss_rate=0.0657, jitter=0.0, rtt=0.0000s, budget=20.00%
+[23:51:17] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.066, budget=20.00%, total_packets=81413, baseline_rec=0.9343
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:17] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 33 candidates (gaussians=1)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 33 candidates (gaussians=356)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 33 candidates (gaussians=5967)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 3 candidates (gaussians=450621)
+[23:51:17] transport_fec_ml.adaptive_fec |   DP result: best_benefit=26.503467, best_parity=16273/16282 (19.99%)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: RS(2,1) recovery=0.9957 parity=1 (vs baseline 0.9343)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: RS(8,8) recovery=0.9343 parity=0 (vs baseline 0.9343)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9601 parity=214 (vs baseline 0.9343)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9601 parity=16058 (vs baseline 0.9343)
+[23:51:17] transport_fec_ml.adaptive_fec |   Final: overhead=19.99%, wrr=0.9600 (baseline=0.9343, Δ=+0.0258)
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline: new policy applied — FECAllocation(overhead=19.99%, wrr=0.9600, baseline=93.4% loss → Δ=+0.0258)
+  LOD 0: RS(2,1) recovery=0.9957 bw=0.0000
+  LOD 1: RS(8,8) recovery=0.9343 bw=0.0000
+  LOD 2: RS(12,10) recovery=0.9601 bw=0.0026
+  LOD 3: RS(12,10) recovery=0.9601 bw=0.1972
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline.optimize: step=8, loss_rate=0.0760, jitter=0.0, rtt=0.0000s, budget=20.00%
+[23:51:17] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.076, budget=20.00%, total_packets=81413, baseline_rec=0.9240
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:17] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 33 candidates (gaussians=1)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 33 candidates (gaussians=356)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 33 candidates (gaussians=5967)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 3 candidates (gaussians=450621)
+[23:51:17] transport_fec_ml.adaptive_fec |   DP result: best_benefit=19.028184, best_parity=16273/16282 (19.99%)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: RS(2,1) recovery=0.9942 parity=1 (vs baseline 0.9240)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: RS(8,8) recovery=0.9240 parity=0 (vs baseline 0.9240)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9425 parity=214 (vs baseline 0.9240)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9425 parity=16058 (vs baseline 0.9240)
+[23:51:17] transport_fec_ml.adaptive_fec |   Final: overhead=19.99%, wrr=0.9425 (baseline=0.9240, Δ=+0.0185)
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline: new policy applied — FECAllocation(overhead=19.99%, wrr=0.9425, baseline=92.4% loss → Δ=+0.0185)
+  LOD 0: RS(2,1) recovery=0.9942 bw=0.0000
+  LOD 1: RS(8,8) recovery=0.9240 bw=0.0000
+  LOD 2: RS(12,10) recovery=0.9425 bw=0.0026
+  LOD 3: RS(12,10) recovery=0.9425 bw=0.1972
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline.optimize: step=9, loss_rate=0.0832, jitter=0.0, rtt=0.0000s, budget=20.00%
+[23:51:17] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.083, budget=20.00%, total_packets=81413, baseline_rec=0.9168
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:17] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 33 candidates (gaussians=1)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 33 candidates (gaussians=356)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 33 candidates (gaussians=5967)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 3 candidates (gaussians=450621)
+[23:51:17] transport_fec_ml.adaptive_fec |   DP result: best_benefit=12.849940, best_parity=16083/16282 (19.75%)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: RS(2,1) recovery=0.9931 parity=1 (vs baseline 0.9168)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: RS(11,8) recovery=0.9902 parity=24 (vs baseline 0.9168)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: RS(8,8) recovery=0.9168 parity=0 (vs baseline 0.9168)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9282 parity=16058 (vs baseline 0.9168)
+[23:51:17] transport_fec_ml.adaptive_fec |   Final: overhead=19.75%, wrr=0.9281 (baseline=0.9168, Δ=+0.0114)
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline: new policy applied — FECAllocation(overhead=19.75%, wrr=0.9281, baseline=91.7% loss → Δ=+0.0114)
+  LOD 0: RS(2,1) recovery=0.9931 bw=0.0000
+  LOD 1: RS(11,8) recovery=0.9902 bw=0.0003
+  LOD 2: RS(8,8) recovery=0.9168 bw=0.0000
+  LOD 3: RS(12,10) recovery=0.9282 bw=0.1972
+
+  After 3× p=0.10:
+    State loss_rate: 0.0832
+    LOD 0: RS(2,1) rec=0.9931
+    LOD 1: RS(11,8) rec=0.9902
+    LOD 2: RS(8,8) rec=0.9168
+    LOD 3: RS(12,10) rec=0.9282
+
+------------------------------------------------------------
+  Scenario 4.2: Strategy History
+------------------------------------------------------------
+
+  History (5 optimizations):
+AdaptiveFECPipeline: 5 optimizations over 9 steps
+ Step     Loss   Jitter       RTT   Overhead       WRR  Configs
+--------------------------------------------------------------------------------
+    1   0.0380      0.0    0.0000     20.00%    0.9906  L1:RS(8,7), L2:RS(12,10), L3:RS(12,10)
+    5   0.0472      0.0    0.0000     19.99%    0.9832  L0:RS(2,1), L2:RS(12,10), L3:RS(12,10)
+    7   0.0657      0.0    0.0000     19.99%    0.9600  L0:RS(2,1), L2:RS(12,10), L3:RS(12,10)
+    8   0.0760      0.0    0.0000     19.99%    0.9425  L0:RS(2,1), L2:RS(12,10), L3:RS(12,10)
+    9   0.0832      0.0    0.0000     19.75%    0.9281  L0:RS(2,1), L1:RS(11,8), L3:RS(12,10)
+
+------------------------------------------------------------
+  Scenario 4.3: Optimization Threshold
+  threshold=0.01, min_interval=2 steps
+------------------------------------------------------------
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline.optimize: step=1, loss_rate=0.0380, jitter=0.0, rtt=0.0000s, budget=20.00%
+[23:51:17] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.038, budget=20.00%, total_packets=81413, baseline_rec=0.9620
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:17] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 35 candidates (gaussians=1)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 35 candidates (gaussians=356)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 35 candidates (gaussians=5967)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 5 candidates (gaussians=450621)
+[23:51:17] transport_fec_ml.adaptive_fec |   DP result: best_benefit=29.557534, best_parity=16282/16282 (20.00%)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: RS(8,8) recovery=0.9620 parity=0 (vs baseline 0.9620)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: RS(8,7) recovery=0.9653 parity=10 (vs baseline 0.9620)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9907 parity=214 (vs baseline 0.9620)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9907 parity=16058 (vs baseline 0.9620)
+[23:51:17] transport_fec_ml.adaptive_fec |   Final: overhead=20.00%, wrr=0.9906 (baseline=0.9620, Δ=+0.0286)
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline: new policy applied — FECAllocation(overhead=20.00%, wrr=0.9906, baseline=96.2% loss → Δ=+0.0286)
+  LOD 0: RS(8,8) recovery=0.9620 bw=0.0000
+  LOD 1: RS(8,7) recovery=0.9653 bw=0.0001
+  LOD 2: RS(12,10) recovery=0.9907 bw=0.0026
+  LOD 3: RS(12,10) recovery=0.9907 bw=0.1972
+    p=0.030, loss_ema=0.0380 → OPTIMIZED
+    p=0.031, loss_ema=0.0359 → skipped
+    p=0.032, loss_ema=0.0347 → skipped
+    p=0.060, loss_ema=0.0423 → skipped
+    p=0.061, loss_ema=0.0479 → skipped
+
+  Total optimizations: 1 (expected: 2)
+
+------------------------------------------------------------
+  Scenario 4.4: Force Optimize
+------------------------------------------------------------
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline.optimize: step=1, loss_rate=0.0500, jitter=0.0, rtt=0.0000s, budget=20.00%
+[23:51:17] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.050, budget=20.00%, total_packets=81413, baseline_rec=0.9500
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:17] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 34 candidates (gaussians=1)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 34 candidates (gaussians=356)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 34 candidates (gaussians=5967)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 4 candidates (gaussians=450621)
+[23:51:17] transport_fec_ml.adaptive_fec |   DP result: best_benefit=31.214831, best_parity=16273/16282 (19.99%)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: RS(2,1) recovery=0.9975 parity=1 (vs baseline 0.9500)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: RS(8,8) recovery=0.9500 parity=0 (vs baseline 0.9500)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9804 parity=214 (vs baseline 0.9500)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9804 parity=16058 (vs baseline 0.9500)
+[23:51:17] transport_fec_ml.adaptive_fec |   Final: overhead=19.99%, wrr=0.9804 (baseline=0.9500, Δ=+0.0304)
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline: new policy applied — FECAllocation(overhead=19.99%, wrr=0.9804, baseline=95.0% loss → Δ=+0.0304)
+  LOD 0: RS(2,1) recovery=0.9975 bw=0.0000
+  LOD 1: RS(8,8) recovery=0.9500 bw=0.0000
+  LOD 2: RS(12,10) recovery=0.9804 bw=0.0026
+  LOD 3: RS(12,10) recovery=0.9804 bw=0.1972
+    Normal optimize: OPTIMIZED (expected: OPTIMIZED, first call)
+    Second optimize: skipped (expected: skipped)
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline.optimize: step=2, loss_rate=0.0500, jitter=0.0, rtt=0.0000s, budget=20.00%
+[23:51:17] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.050, budget=20.00%, total_packets=81413, baseline_rec=0.9500
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:17] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: 34 candidates (gaussians=1)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: 34 candidates (gaussians=356)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: 34 candidates (gaussians=5967)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: 4 candidates (gaussians=450621)
+[23:51:17] transport_fec_ml.adaptive_fec |   DP result: best_benefit=31.214831, best_parity=16273/16282 (19.99%)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 0: RS(2,1) recovery=0.9975 parity=1 (vs baseline 0.9500)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 1: RS(8,8) recovery=0.9500 parity=0 (vs baseline 0.9500)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9804 parity=214 (vs baseline 0.9500)
+[23:51:17] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9804 parity=16058 (vs baseline 0.9500)
+[23:51:17] transport_fec_ml.adaptive_fec |   Final: overhead=19.99%, wrr=0.9804 (baseline=0.9500, Δ=+0.0304)
+[23:51:17] transport_fec_ml.pipeline | AdaptiveFECPipeline: new policy applied — FECAllocation(overhead=19.99%, wrr=0.9804, baseline=95.0% loss → Δ=+0.0304)
+  LOD 0: RS(2,1) recovery=0.9975 bw=0.0000
+  LOD 1: RS(8,8) recovery=0.9500 bw=0.0000
+  LOD 2: RS(12,10) recovery=0.9804 bw=0.0026
+  LOD 3: RS(12,10) recovery=0.9804 bw=0.1972
+    Force optimize:  OPTIMIZED (expected: OPTIMIZED)
+    Reset: OK (history=0, loss=0.0)
+
+======================================================================
+  Experiment 4 Complete.
+======================================================================

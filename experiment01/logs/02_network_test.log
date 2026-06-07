@@ -1,0 +1,58 @@
+======================================================================
+  Experiment 2: NetworkEstimator Test
+======================================================================
+
+------------------------------------------------------------
+  Test 2.1: EMA Smoothing + Cold Start
+  Loss sequence: 0% → 5% → 10% → 3%
+------------------------------------------------------------
+
+   Step      Raw    EMA Loss    Jitter       RTT  Note
+  -----  -------  ----------  --------  --------  --------------------
+[23:50:57] transport_fec_ml.network_estimator | NetworkEstimator cold start: raw=0.0000, alpha_first=0.60, prior=0.05 → loss_rate=0.0200
+      0    0.000      0.0200       0.0    0.0000  cold start: should NOT be 0
+      1    0.050      0.0281       0.0    0.0000  rising
+      2    0.100      0.0489       0.0    0.0000  peak
+      3    0.100      0.0636       0.0    0.0000  sustained peak
+      4    0.030      0.0527       0.0    0.0000  falling
+      5    0.030      0.0451       0.0    0.0000  sustained low
+[23:50:57] transport_fec_ml.network_estimator | NetworkEstimator cold start: raw=0.0000, alpha_first=0.60, prior=0.05 → loss_rate=0.0200
+
+  Cold start check:
+    First RR with p=0 → EMA loss_rate = 0.0200
+    Expected ≈ 0.0200 (0.6*0 + 0.4*0.05)
+    ✅ Cold start working correctly (not 0!)
+    After 5× p=0.10: loss_rate = 0.0846 (should approach 0.10)
+
+------------------------------------------------------------
+  Test 2.2: Per-LOD EMA Smoothing
+------------------------------------------------------------
+[23:50:57] transport_fec_ml.network_estimator | NetworkEstimator cold start: raw=0.0391, alpha_first=0.60, prior=0.05 → loss_rate=0.0434
+
+  Per-LOD stats after 3 reports (EMA smoothed):
+    LOD     Loss Rate    FEC Recovery
+  -----  ------------  --------------
+      0        0.0581          0.7034
+      1        0.0400          0.7500
+      2        0.0333          0.8000
+      3        0.0476          0.7500
+
+------------------------------------------------------------
+  Test 2.3: RTT Estimation (from SR/DLSR)
+------------------------------------------------------------
+[23:50:57] transport_fec_ml.network_estimator | NetworkEstimator cold start: raw=0.0469, alpha_first=0.60, prior=0.05 → loss_rate=0.0481
+    fake_last_sr = 4032890739
+    fake_dlsr    = 1000
+    now_ntp      = 4032895739
+    expected RTT ≈ 0.0610s
+    estimated RTT = 0.0611s
+    ✅ RTT estimation correct
+
+------------------------------------------------------------
+  Test 2.4: Reset
+------------------------------------------------------------
+    ✅ Reset works correctly
+
+======================================================================
+  Experiment 2 Complete.
+======================================================================

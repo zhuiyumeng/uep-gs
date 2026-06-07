@@ -1,0 +1,305 @@
+======================================================================
+  Experiment 1: DP Optimizer Correctness Test
+  CANDIDATE_K old: [1, 2, 4, 5, 8, 10]
+  CANDIDATE_K new: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  Candidate configs old: 28
+  Candidate configs new: 50
+======================================================================
+
+
+######################################################################
+#  Part 1: Synthetic Data (Balanced LOD Distribution)
+######################################################################
+
+  Input: loss_rate=3%, budget=20%
+  LOD sizes (packets): [5, 100, 1500, 80000]
+  LOD gaussian counts: [500, 5000, 30000, 420000]
+[23:50:51] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.030, budget=20.00%, total_packets=81605, baseline_rec=0.9700
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 5 packets, 500 gaussians, weight=1.0000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 100 packets, 5000 gaussians, weight=0.5000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 1500 packets, 30000 gaussians, weight=0.3333
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 80000 packets, 420000 gaussians, weight=0.2500
+[23:50:51] transport_fec_ml.adaptive_fec |   max_parity_budget=16321 packets
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 36 candidates (gaussians=500)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 36 candidates (gaussians=5000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 36 candidates (gaussians=30000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 6 candidates (gaussians=420000)
+[23:50:51] transport_fec_ml.adaptive_fec |   DP result: best_benefit=55.303298, best_parity=16321/16321 (20.00%)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: RS(6,5) recovery=0.9875 parity=1 (vs baseline 0.9700)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: RS(12,10) recovery=0.9952 parity=20 (vs baseline 0.9700)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9952 parity=300 (vs baseline 0.9700)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9952 parity=16000 (vs baseline 0.9700)
+[23:50:51] transport_fec_ml.adaptive_fec |   Final: overhead=20.00%, wrr=0.9952 (baseline=0.9700, Δ=+0.0252)
+
+======================================================================
+  A: 低丢包 3%, 预算 20%
+======================================================================
+
+                                            Old Formula                                    New Formula
+     LOD        Config    Recovery        BW        Config    Recovery        BW
+  ------  ------------  ----------  --------  ------------  ----------  --------
+       0  RS( 6, 5) ← FEC      0.9875    0.0000  RS( 6, 5) ← FEC      0.9875    0.0000
+       1  RS(12,10) ← FEC      0.9952    0.0002  RS(12,10) ← FEC      0.9952    0.0002
+       2  RS(12,10) ← FEC      0.9952    0.0037  RS(12,10) ← FEC      0.9952    0.0037
+       3  RS(12,10) ← FEC      0.9952    0.1961  RS(12,10) ← FEC      0.9952    0.1961
+
+  Summary:
+    Old: overhead=20.00%, wrr=0.9952
+    New: overhead=20.00%, wrr=0.9952
+
+  🔑 Key Check (LOD0):
+    Baseline recovery (no-FEC): 0.9700
+    Old LOD0 recovery:          0.9875 ✅ > baseline
+    New LOD0 recovery:          0.9875 ✅ > baseline
+
+  Input: loss_rate=6%, budget=20%
+  LOD sizes (packets): [5, 100, 1500, 80000]
+  LOD gaussian counts: [500, 5000, 30000, 420000]
+[23:50:51] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.060, budget=20.00%, total_packets=81605, baseline_rec=0.9400
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 5 packets, 500 gaussians, weight=1.0000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 100 packets, 5000 gaussians, weight=0.5000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 1500 packets, 30000 gaussians, weight=0.3333
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 80000 packets, 420000 gaussians, weight=0.2500
+[23:50:51] transport_fec_ml.adaptive_fec |   max_parity_budget=16321 packets
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 33 candidates (gaussians=500)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 33 candidates (gaussians=5000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 33 candidates (gaussians=30000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 3 candidates (gaussians=420000)
+[23:50:51] transport_fec_ml.adaptive_fec |   DP result: best_benefit=63.220868, best_parity=539/16321 (0.66%)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: RS(7,5) recovery=0.9937 parity=2 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: RS(12,9) recovery=0.9957 parity=36 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,9) recovery=0.9957 parity=501 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: RS(8,8) recovery=0.9400 parity=0 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   Final: overhead=0.66%, wrr=0.9415 (baseline=0.9400, Δ=+0.0015)
+
+======================================================================
+  B: 中丢包 6%, 预算 20%
+======================================================================
+
+                                            Old Formula                                    New Formula
+     LOD        Config    Recovery        BW        Config    Recovery        BW
+  ------  ------------  ----------  --------  ------------  ----------  --------
+       0  RS( 6, 5) ← FEC      0.9541    0.0000  RS( 7, 5) ← FEC      0.9937    0.0000
+       1  RS(12,10) ← FEC      0.9684    0.0002  RS(12, 9) ← FEC      0.9957    0.0004
+       2  RS(12,10) ← FEC      0.9684    0.0037  RS(12, 9) ← FEC      0.9957    0.0061
+       3  RS(12,10) ← FEC      0.9684    0.1961  RS( 8, 8)            0.9400    0.0000
+
+  Summary:
+    Old: overhead=20.00%, wrr=0.9684
+    New: overhead=0.66%, wrr=0.9415
+
+  🔑 Key Check (LOD0):
+    Baseline recovery (no-FEC): 0.9400
+    Old LOD0 recovery:          0.9541 ✅ > baseline
+    New LOD0 recovery:          0.9937 ✅ > baseline
+
+  Input: loss_rate=10%, budget=30%
+  LOD sizes (packets): [5, 100, 1500, 80000]
+  LOD gaussian counts: [500, 5000, 30000, 420000]
+[23:50:51] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.100, budget=30.00%, total_packets=81605, baseline_rec=0.9000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 5 packets, 500 gaussians, weight=1.0000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 100 packets, 5000 gaussians, weight=0.5000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 1500 packets, 30000 gaussians, weight=0.3333
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 80000 packets, 420000 gaussians, weight=0.2500
+[23:50:51] transport_fec_ml.adaptive_fec |   max_parity_budget=24481 packets
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 31 candidates (gaussians=500)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 31 candidates (gaussians=5000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 31 candidates (gaussians=30000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 5 candidates (gaussians=420000)
+[23:50:51] transport_fec_ml.adaptive_fec |   DP result: best_benefit=124.121657, best_parity=23665/24481 (29.00%)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: RS(8,5) recovery=0.9950 parity=3 (vs baseline 0.9000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: RS(12,8) recovery=0.9957 parity=52 (vs baseline 0.9000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,8) recovery=0.9957 parity=752 (vs baseline 0.9000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: RS(9,7) recovery=0.9470 parity=22858 (vs baseline 0.9000)
+[23:50:51] transport_fec_ml.adaptive_fec |   Final: overhead=29.00%, wrr=0.9483 (baseline=0.9000, Δ=+0.0483)
+
+======================================================================
+  C: 高丢包 10%, 预算 30%
+======================================================================
+
+                                            Old Formula                                    New Formula
+     LOD        Config    Recovery        BW        Config    Recovery        BW
+  ------  ------------  ----------  --------  ------------  ----------  --------
+       0  RS( 5, 1) ← FEC      1.0000    0.0002  RS( 8, 5) ← FEC      0.9950    0.0000
+       1  RS( 5, 1) ← FEC      1.0000    0.0049  RS(12, 8) ← FEC      0.9957    0.0006
+       2  RS( 6, 2) ← FEC      0.9999    0.0368  RS(12, 8) ← FEC      0.9957    0.0092
+       3  RS(10, 8) ← FEC      0.9298    0.2451  RS( 9, 7) ← FEC      0.9470    0.2801
+
+  Summary:
+    Old: overhead=28.70%, wrr=0.9317
+    New: overhead=29.00%, wrr=0.9483
+
+  🔑 Key Check (LOD0):
+    Baseline recovery (no-FEC): 0.9000
+    Old LOD0 recovery:          1.0000 ✅ > baseline
+    New LOD0 recovery:          0.9950 ✅ > baseline
+
+  Input: loss_rate=6%, budget=5%
+  LOD sizes (packets): [5, 100, 1500, 80000]
+  LOD gaussian counts: [500, 5000, 30000, 420000]
+[23:50:51] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.060, budget=5.00%, total_packets=81605, baseline_rec=0.9400
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 5 packets, 500 gaussians, weight=1.0000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 100 packets, 5000 gaussians, weight=0.5000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 1500 packets, 30000 gaussians, weight=0.3333
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 80000 packets, 420000 gaussians, weight=0.2500
+[23:50:51] transport_fec_ml.adaptive_fec |   max_parity_budget=4080 packets
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 33 candidates (gaussians=500)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 33 candidates (gaussians=5000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 31 candidates (gaussians=30000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 1 candidates (gaussians=420000)
+[23:50:51] transport_fec_ml.adaptive_fec |   DP result: best_benefit=63.220868, best_parity=539/4080 (0.66%)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: RS(7,5) recovery=0.9937 parity=2 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: RS(12,9) recovery=0.9957 parity=36 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,9) recovery=0.9957 parity=501 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: RS(8,8) recovery=0.9400 parity=0 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   Final: overhead=0.66%, wrr=0.9415 (baseline=0.9400, Δ=+0.0015)
+
+======================================================================
+  D: 紧预算 6%, 预算 5%
+======================================================================
+
+                                            Old Formula                                    New Formula
+     LOD        Config    Recovery        BW        Config    Recovery        BW
+  ------  ------------  ----------  --------  ------------  ----------  --------
+       0  RS( 5, 1) ← FEC      1.0000    0.0002  RS( 7, 5) ← FEC      0.9937    0.0000
+       1  RS( 5, 1) ← FEC      1.0000    0.0049  RS(12, 9) ← FEC      0.9957    0.0004
+       2  RS( 6, 2) ← FEC      1.0000    0.0368  RS(12, 9) ← FEC      0.9957    0.0061
+       3  RS( 8, 8)            0.9400    0.0000  RS( 8, 8)            0.9400    0.0000
+
+  Summary:
+    Old: overhead=4.19%, wrr=0.9416
+    New: overhead=0.66%, wrr=0.9415
+
+  🔑 Key Check (LOD0):
+    Baseline recovery (no-FEC): 0.9400
+    Old LOD0 recovery:          1.0000 ✅ > baseline
+    New LOD0 recovery:          0.9937 ✅ > baseline
+
+
+######################################################################
+#  Part 2: Real LOD Data (experiments/multi_loss/lod/)
+#  LOD sizes (packets): [1, 64, 1064, 80284]
+#  LOD gaussians:       [1, 356, 5967, 450621]
+######################################################################
+
+  Input: loss_rate=3%, budget=20%
+[23:50:51] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.030, budget=20.00%, total_packets=81413, baseline_rec=0.9700
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:50:51] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 36 candidates (gaussians=1)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 36 candidates (gaussians=356)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 36 candidates (gaussians=5967)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 6 candidates (gaussians=450621)
+[23:50:51] transport_fec_ml.adaptive_fec |   DP result: best_benefit=26.184440, best_parity=16282/16282 (20.00%)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: RS(8,8) recovery=0.9700 parity=0 (vs baseline 0.9700)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: RS(8,7) recovery=0.9777 parity=10 (vs baseline 0.9700)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9952 parity=214 (vs baseline 0.9700)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9952 parity=16058 (vs baseline 0.9700)
+[23:50:51] transport_fec_ml.adaptive_fec |   Final: overhead=20.00%, wrr=0.9951 (baseline=0.9700, Δ=+0.0251)
+
+======================================================================
+  R: 真实数据 低丢包 3%
+======================================================================
+
+                                            Old Formula                                    New Formula
+     LOD        Config    Recovery        BW        Config    Recovery        BW
+  ------  ------------  ----------  --------  ------------  ----------  --------
+       0  RS( 3, 1) ← FEC      1.0000    0.0000  RS( 8, 8)            0.9700    0.0000
+       1  RS( 9, 8) ← FEC      0.9718    0.0001  RS( 8, 7) ← FEC      0.9777    0.0001
+       2  RS(12,10) ← FEC      0.9952    0.0026  RS(12,10) ← FEC      0.9952    0.0026
+       3  RS(12,10) ← FEC      0.9952    0.1972  RS(12,10) ← FEC      0.9952    0.1972
+
+  Summary:
+    Old: overhead=20.00%, wrr=0.9951
+    New: overhead=20.00%, wrr=0.9951
+
+  🔑 Key Check (LOD0):
+    Baseline recovery (no-FEC): 0.9700
+    Old LOD0 recovery:          1.0000 ✅ > baseline
+    New LOD0 recovery:          0.9700 ❌ = baseline
+
+  Input: loss_rate=6%, budget=20%
+[23:50:51] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.060, budget=20.00%, total_packets=81413, baseline_rec=0.9400
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:50:51] transport_fec_ml.adaptive_fec |   max_parity_budget=16282 packets
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 33 candidates (gaussians=1)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 33 candidates (gaussians=356)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 33 candidates (gaussians=5967)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 3 candidates (gaussians=450621)
+[23:50:51] transport_fec_ml.adaptive_fec |   DP result: best_benefit=29.170060, best_parity=16273/16282 (19.99%)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: RS(2,1) recovery=0.9964 parity=1 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: RS(8,8) recovery=0.9400 parity=0 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,10) recovery=0.9684 parity=214 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: RS(12,10) recovery=0.9684 parity=16058 (vs baseline 0.9400)
+[23:50:51] transport_fec_ml.adaptive_fec |   Final: overhead=19.99%, wrr=0.9684 (baseline=0.9400, Δ=+0.0284)
+
+======================================================================
+  R: 真实数据 中丢包 6%
+======================================================================
+
+                                            Old Formula                                    New Formula
+     LOD        Config    Recovery        BW        Config    Recovery        BW
+  ------  ------------  ----------  --------  ------------  ----------  --------
+       0  RS( 5, 1) ← FEC      1.0000    0.0000  RS( 2, 1) ← FEC      0.9964    0.0000
+       1  RS( 8, 8)            0.9400    0.0000  RS( 8, 8)            0.9400    0.0000
+       2  RS(12,10) ← FEC      0.9684    0.0026  RS(12,10) ← FEC      0.9684    0.0026
+       3  RS(12,10) ← FEC      0.9684    0.1972  RS(12,10) ← FEC      0.9684    0.1972
+
+  Summary:
+    Old: overhead=19.99%, wrr=0.9684
+    New: overhead=19.99%, wrr=0.9684
+
+  🔑 Key Check (LOD0):
+    Baseline recovery (no-FEC): 0.9400
+    Old LOD0 recovery:          1.0000 ✅ > baseline
+    New LOD0 recovery:          0.9964 ✅ > baseline
+
+  Input: loss_rate=10%, budget=30%
+[23:50:51] transport_fec_ml.adaptive_fec | AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.100, budget=30.00%, total_packets=81413, baseline_rec=0.9000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:50:51] transport_fec_ml.adaptive_fec |   max_parity_budget=24423 packets
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: 31 candidates (gaussians=1)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: 31 candidates (gaussians=356)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: 31 candidates (gaussians=5967)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: 5 candidates (gaussians=450621)
+[23:50:51] transport_fec_ml.adaptive_fec |   DP result: best_benefit=46.248847, best_parity=23505/24423 (28.87%)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 0: RS(2,1) recovery=0.9900 parity=1 (vs baseline 0.9000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 1: RS(12,8) recovery=0.9957 parity=32 (vs baseline 0.9000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 2: RS(12,8) recovery=0.9957 parity=532 (vs baseline 0.9000)
+[23:50:51] transport_fec_ml.adaptive_fec |   LOD 3: RS(9,7) recovery=0.9470 parity=22940 (vs baseline 0.9000)
+[23:50:51] transport_fec_ml.adaptive_fec |   Final: overhead=28.87%, wrr=0.9479 (baseline=0.9000, Δ=+0.0479)
+
+======================================================================
+  R: 真实数据 高丢包 10%
+======================================================================
+
+                                            Old Formula                                    New Formula
+     LOD        Config    Recovery        BW        Config    Recovery        BW
+  ------  ------------  ----------  --------  ------------  ----------  --------
+       0  RS( 5, 1) ← FEC      1.0000    0.0000  RS( 2, 1) ← FEC      0.9900    0.0000
+       1  RS( 8, 4) ← FEC      0.9996    0.0008  RS(12, 8) ← FEC      0.9957    0.0004
+       2  RS( 5, 1) ← FEC      1.0000    0.0523  RS(12, 8) ← FEC      0.9957    0.0065
+       3  RS(10, 8) ← FEC      0.9298    0.2465  RS( 9, 7) ← FEC      0.9470    0.2818
+
+  Summary:
+    Old: overhead=29.97%, wrr=0.9311
+    New: overhead=28.87%, wrr=0.9479
+
+  🔑 Key Check (LOD0):
+    Baseline recovery (no-FEC): 0.9000
+    Old LOD0 recovery:          1.0000 ✅ > baseline
+    New LOD0 recovery:          0.9900 ✅ > baseline
+
+
+======================================================================
+  Experiment 1 Complete.
+======================================================================

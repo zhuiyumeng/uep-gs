@@ -1,0 +1,127 @@
+======================================================================
+  Experiment 3: Offline FEC Strategy Comparison
+======================================================================
+
+  LOD Data:
+    LOD     Packets     Gaussians     % Gauss
+      0           1             1       0.00%
+      1          64           356       0.08%
+      2        1064          5967       1.31%
+      3       80284        450621      98.62%
+[23:51:06] AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.030, budget=20.00%, total_packets=81413, baseline_rec=0.9700
+[23:51:06]   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:06]   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:06]   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:06]   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:06]   max_parity_budget=16282 packets
+[23:51:06]   LOD 0: 36 candidates (gaussians=1)
+[23:51:06]   LOD 1: 36 candidates (gaussians=356)
+[23:51:06]   LOD 2: 36 candidates (gaussians=5967)
+[23:51:06]   LOD 3: 6 candidates (gaussians=450621)
+[23:51:06]   DP result: best_benefit=26.184440, best_parity=16282/16282 (20.00%)
+[23:51:06]   LOD 0: RS(8,8) recovery=0.9700 parity=0 (vs baseline 0.9700)
+[23:51:06]   LOD 1: RS(8,7) recovery=0.9777 parity=10 (vs baseline 0.9700)
+[23:51:06]   LOD 2: RS(12,10) recovery=0.9952 parity=214 (vs baseline 0.9700)
+[23:51:06]   LOD 3: RS(12,10) recovery=0.9952 parity=16058 (vs baseline 0.9700)
+[23:51:06]   Final: overhead=20.00%, wrr=0.9951 (baseline=0.9700, Δ=+0.0251)
+[23:51:06] AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.060, budget=20.00%, total_packets=81413, baseline_rec=0.9400
+[23:51:06]   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:06]   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:06]   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:06]   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:06]   max_parity_budget=16282 packets
+[23:51:06]   LOD 0: 33 candidates (gaussians=1)
+[23:51:06]   LOD 1: 33 candidates (gaussians=356)
+[23:51:06]   LOD 2: 33 candidates (gaussians=5967)
+[23:51:06]   LOD 3: 3 candidates (gaussians=450621)
+[23:51:06]   DP result: best_benefit=29.170060, best_parity=16273/16282 (19.99%)
+[23:51:06]   LOD 0: RS(2,1) recovery=0.9964 parity=1 (vs baseline 0.9400)
+[23:51:06]   LOD 1: RS(8,8) recovery=0.9400 parity=0 (vs baseline 0.9400)
+[23:51:06]   LOD 2: RS(12,10) recovery=0.9684 parity=214 (vs baseline 0.9400)
+[23:51:06]   LOD 3: RS(12,10) recovery=0.9684 parity=16058 (vs baseline 0.9400)
+[23:51:06]   Final: overhead=19.99%, wrr=0.9684 (baseline=0.9400, Δ=+0.0284)
+[23:51:06] AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.100, budget=20.00%, total_packets=81413, baseline_rec=0.9000
+[23:51:06]   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[23:51:06]   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[23:51:06]   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[23:51:06]   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[23:51:06]   max_parity_budget=16282 packets
+[23:51:06]   LOD 0: 31 candidates (gaussians=1)
+[23:51:06]   LOD 1: 31 candidates (gaussians=356)
+[23:51:06]   LOD 2: 31 candidates (gaussians=5967)
+[23:51:06]   LOD 3: 1 candidates (gaussians=450621)
+[23:51:06]   DP result: best_benefit=11.270402, best_parity=565/16282 (0.69%)
+[23:51:06]   LOD 0: RS(2,1) recovery=0.9900 parity=1 (vs baseline 0.9000)
+[23:51:06]   LOD 1: RS(12,8) recovery=0.9957 parity=32 (vs baseline 0.9000)
+[23:51:06]   LOD 2: RS(12,8) recovery=0.9957 parity=532 (vs baseline 0.9000)
+[23:51:06]   LOD 3: RS(8,8) recovery=0.9000 parity=0 (vs baseline 0.9000)
+[23:51:06]   Final: overhead=0.69%, wrr=0.9018 (baseline=0.9000, Δ=+0.0018)
+
+  Strategy Configurations:
+                        Strategy                                             Configs    Overhead       WRR
+  ------------------------------  --------------------------------------------------  ----------  --------
+            UEP_POLICY (loss=3%)     L0:RS(2,1), L1:RS(10,8), L2:RS(9,8), L3:RS(9,8)      12.51%    0.9719
+                Old DP (loss=3%)  L0:RS(3,1), L1:RS(9,8), L2:RS(12,10), L3:RS(12,10)      20.00%    0.9951
+                New DP (loss=3%)    L0:(8,8), L1:RS(8,7), L2:RS(12,10), L3:RS(12,10)      20.00%    0.9951
+            UEP_POLICY (loss=6%)     L0:RS(2,1), L1:RS(10,8), L2:RS(9,8), L3:RS(9,8)      12.51%    0.9023
+                Old DP (loss=6%)    L0:RS(5,1), L1:(8,8), L2:RS(12,10), L3:RS(12,10)      19.99%    0.9684
+                New DP (loss=6%)    L0:RS(2,1), L1:(8,8), L2:RS(12,10), L3:RS(12,10)      19.99%    0.9684
+           UEP_POLICY (loss=10%)     L0:RS(2,1), L1:RS(10,8), L2:RS(9,8), L3:RS(9,8)      12.51%    0.7751
+               Old DP (loss=10%)        L0:RS(5,1), L1:RS(5,1), L2:RS(5,1), L3:(8,8)       5.55%    0.9019
+               New DP (loss=10%)      L0:RS(2,1), L1:RS(12,8), L2:RS(12,8), L3:(8,8)       0.69%    0.9018
+
+  Running FECSimulator (100 trials per strategy×loss_rate)...
+
+  ============================================================
+  Loss Rate: 3%
+  ============================================================
+[23:51:06] Simulating: strategy=UEP_POLICY, loss=0.030, trials=100
+[23:51:07]   → recovery_rate=0.9943, gaussian_rec=0.9943
+[23:51:07] Simulating: strategy=Old DP, loss=0.030, trials=100
+[23:51:08]   → recovery_rate=0.9992, gaussian_rec=0.9992
+[23:51:08] Simulating: strategy=New DP, loss=0.030, trials=100
+[23:51:09]   → recovery_rate=0.9992, gaussian_rec=0.9992
+
+         Strategy     Pkt Rec     Gauss Rec     Eff Gauss      Δ vs UEP
+  ---------------  ----------  ------------  ------------  ------------
+       UEP_POLICY      0.9943        0.9943        454351  +0.0000
+           Old DP      0.9992        0.9992        456564  +0.0048
+           New DP      0.9992        0.9992        456560  +0.0048
+
+  ============================================================
+  Loss Rate: 6%
+  ============================================================
+[23:51:09] Simulating: strategy=UEP_POLICY, loss=0.060, trials=100
+[23:51:10]   → recovery_rate=0.9790, gaussian_rec=0.9790
+[23:51:10] Simulating: strategy=Old DP, loss=0.060, trials=100
+[23:51:11]   → recovery_rate=0.9941, gaussian_rec=0.9941
+[23:51:11] Simulating: strategy=New DP, loss=0.060, trials=100
+[23:51:12]   → recovery_rate=0.9940, gaussian_rec=0.9940
+
+         Strategy     Pkt Rec     Gauss Rec     Eff Gauss      Δ vs UEP
+  ---------------  ----------  ------------  ------------  ------------
+       UEP_POLICY      0.9790        0.9790        447360  +0.0000
+           Old DP      0.9941        0.9941        454248  +0.0151
+           New DP      0.9940        0.9940        454219  +0.0150
+
+  ============================================================
+  Loss Rate: 10%
+  ============================================================
+[23:51:12] Simulating: strategy=UEP_POLICY, loss=0.100, trials=100
+[23:51:14]   → recovery_rate=0.9480, gaussian_rec=0.9480
+[23:51:14] Simulating: strategy=Old DP, loss=0.100, trials=100
+[23:51:14]   → recovery_rate=0.9013, gaussian_rec=0.9013
+[23:51:14] Simulating: strategy=New DP, loss=0.100, trials=100
+[23:51:15]   → recovery_rate=0.9013, gaussian_rec=0.9013
+
+         Strategy     Pkt Rec     Gauss Rec     Eff Gauss      Δ vs UEP
+  ---------------  ----------  ------------  ------------  ------------
+       UEP_POLICY      0.9480        0.9480        433164  +0.0000
+           Old DP      0.9013        0.9013        411847  -0.0467
+           New DP      0.9013        0.9013        411859  -0.0466
+
+  Results saved to: /root/uep-gs/experiment01/results/allocation_comparison.json
+
+======================================================================
+  Experiment 3 Complete.
+======================================================================

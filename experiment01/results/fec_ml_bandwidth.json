@@ -1,0 +1,113 @@
+[
+  {
+    "loss_rate": 0.03,
+    "dp_allocation": {
+      "lod_configs": {
+        "0": [
+          8,
+          8
+        ],
+        "1": [
+          7,
+          8
+        ],
+        "2": [
+          10,
+          12
+        ],
+        "3": [
+          10,
+          12
+        ]
+      },
+      "overhead_ratio": 0.19999263016962893,
+      "wrr": 0.9951252659050369
+    },
+    "uep_allocation": {
+      "overhead_ratio": 0.12511515359954797,
+      "wrr": 0.9718828164399702
+    },
+    "dp_simulation": {
+      "gaussian_recovery_rate": 0.9991665770470034,
+      "effective_gaussians": 456564
+    },
+    "uep_simulation": {
+      "gaussian_recovery_rate": 0.9942887777103331,
+      "effective_gaussians": 454335
+    }
+  },
+  {
+    "loss_rate": 0.06,
+    "dp_allocation": {
+      "lod_configs": {
+        "0": [
+          1,
+          2
+        ],
+        "1": [
+          8,
+          8
+        ],
+        "2": [
+          10,
+          12
+        ],
+        "3": [
+          10,
+          12
+        ]
+      },
+      "overhead_ratio": 0.19988208271406285,
+      "wrr": 0.9683868741334534
+    },
+    "uep_allocation": {
+      "overhead_ratio": 0.12511515359954797,
+      "wrr": 0.9022902017274955
+    },
+    "dp_simulation": {
+      "gaussian_recovery_rate": 0.9941194362059804,
+      "effective_gaussians": 454258
+    },
+    "uep_simulation": {
+      "gaussian_recovery_rate": 0.979022897588467,
+      "effective_gaussians": 447360
+    }
+  },
+  {
+    "loss_rate": 0.1,
+    "dp_allocation": {
+      "lod_configs": {
+        "0": [
+          1,
+          2
+        ],
+        "1": [
+          8,
+          12
+        ],
+        "2": [
+          8,
+          12
+        ],
+        "3": [
+          8,
+          8
+        ]
+      },
+      "overhead_ratio": 0.006939923599425153,
+      "wrr": 0.9018125645497719
+    },
+    "uep_allocation": {
+      "overhead_ratio": 0.12511515359954797,
+      "wrr": 0.7750938850621022
+    },
+    "dp_simulation": {
+      "gaussian_recovery_rate": 0.9013574440482338,
+      "effective_gaussians": 411871
+    },
+    "uep_simulation": {
+      "gaussian_recovery_rate": 0.9480055566374829,
+      "effective_gaussians": 433186
+    }
+  }
+]

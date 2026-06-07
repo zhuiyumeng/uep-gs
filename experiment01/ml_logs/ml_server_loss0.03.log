@@ -1,0 +1,33 @@
+[10:37:04] Found 4 LOD files:
+[10:37:04]   model_lod0.ply  (1.7 KB)
+[10:37:04]   model_lod1.ply  (87.7 KB)
+[10:37:04]   model_lod2.ply  (1.4 MB)
+[10:37:04]   model_lod3.ply  (106.6 MB)
+[10:37:06] [ML Policy] Computing DP allocation: loss=3.0%, budget=20%
+[10:37:06] AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.030, budget=20.00%, total_packets=81413, baseline_rec=0.9700
+[10:37:06]   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[10:37:06]   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[10:37:06]   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[10:37:06]   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[10:37:06]   max_parity_budget=16282 packets
+[10:37:06]   LOD 0: 36 candidates (gaussians=1)
+[10:37:06]   LOD 1: 36 candidates (gaussians=356)
+[10:37:06]   LOD 2: 36 candidates (gaussians=5967)
+[10:37:06]   LOD 3: 6 candidates (gaussians=450621)
+[10:37:06]   DP result: best_benefit=26.184440, best_parity=16282/16282 (20.00%)
+[10:37:06]   LOD 0: RS(8,8) recovery=0.9700 parity=0 (vs baseline 0.9700)
+[10:37:06]   LOD 1: RS(8,7) recovery=0.9777 parity=10 (vs baseline 0.9700)
+[10:37:06]   LOD 2: RS(12,10) recovery=0.9952 parity=214 (vs baseline 0.9700)
+[10:37:06]   LOD 3: RS(12,10) recovery=0.9952 parity=16058 (vs baseline 0.9700)
+[10:37:06]   Final: overhead=20.00%, wrr=0.9951 (baseline=0.9700, Δ=+0.0251)
+[10:37:06] [ML Policy] FECAllocation(overhead=20.00%, wrr=0.9951, baseline=97.0% loss → Δ=+0.0251)
+  LOD 0: RS(8,8) recovery=0.9700 bw=0.0000
+  LOD 1: RS(8,7) recovery=0.9777 bw=0.0001
+  LOD 2: RS(12,10) recovery=0.9952 bw=0.0026
+  LOD 3: RS(12,10) recovery=0.9952 bw=0.1972
+[10:37:06] Loaded: 456945 gaussians, 4 LODs, 108.07 MB, SH degree 3 [FEC ON + ML]
+[10:37:06] Server ready on 127.0.0.1:5200
+[10:37:06] Waiting for client handshake ...
+[10:37:07] Client connected: 127.0.0.1:46796
+[10:39:27] Frame 0 | 97691 packets | 108.07 MB | ~25937 Mbps
+[10:39:27] Oneshot: sent 1 frame, waiting for next client

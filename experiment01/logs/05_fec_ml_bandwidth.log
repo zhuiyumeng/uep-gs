@@ -1,0 +1,116 @@
+
+============================================================================
+  transport_fec_ml — FEC 带宽开销实验
+============================================================================
+  LOD 数据:  4 LODs, 456,945 gaussians, 81,413 packets
+  丢包率:    ['3%', '6%', '10%']
+  带宽预算:  20%
+
+----------------------------------------------------------------------------
+  ▸ 丢包率 = 3%
+----------------------------------------------------------------------------
+[10:24:13] AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.030, budget=20.00%, total_packets=81413, baseline_rec=0.9700
+[10:24:13]   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[10:24:13]   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[10:24:13]   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[10:24:13]   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[10:24:13]   max_parity_budget=16282 packets
+[10:24:13]   LOD 0: 36 candidates (gaussians=1)
+[10:24:13]   LOD 1: 36 candidates (gaussians=356)
+[10:24:13]   LOD 2: 36 candidates (gaussians=5967)
+[10:24:13]   LOD 3: 6 candidates (gaussians=450621)
+[10:24:13]   DP result: best_benefit=26.184440, best_parity=16282/16282 (20.00%)
+[10:24:13]   LOD 0: RS(8,8) recovery=0.9700 parity=0 (vs baseline 0.9700)
+[10:24:13]   LOD 1: RS(8,7) recovery=0.9777 parity=10 (vs baseline 0.9700)
+[10:24:13]   LOD 2: RS(12,10) recovery=0.9952 parity=214 (vs baseline 0.9700)
+[10:24:13]   LOD 3: RS(12,10) recovery=0.9952 parity=16058 (vs baseline 0.9700)
+[10:24:13]   Final: overhead=20.00%, wrr=0.9951 (baseline=0.9700, Δ=+0.0251)
+
+  策略                    额外带宽       发送量(MB)       WRR       模拟恢复率  各 LOD 配置
+  ──────────────  ──────────  ────────────  ────────  ──────────  ──────────────────────────────
+  UEP_POLICY          12.51%       121.6 MB    0.9719      0.9943  L0:RS( 2, 1) | L1:RS(10, 8) | L2:RS( 9, 8) | L3:RS( 9, 8)
+  DP Optimizer        20.00%       129.7 MB    0.9951      0.9992  L0:  (no-FEC) | L1:RS( 8, 7) | L2:RS(12,10) | L3:RS(12,10)
+
+  📦 原始数据: 108.1 MB (113,322,360 bytes)
+  📊 DP 策略额外发送: 21.6 MB ( 20.00%)
+  📊 UEP 策略额外发送: 13.5 MB ( 12.51%)
+  🔄 DP 恢复率 vs 无 FEC (97%): Δ=+0.0292
+  🔄 UEP 恢复率 vs 无 FEC (97%): Δ=+0.0243
+----------------------------------------------------------------------------
+  ▸ 丢包率 = 6%
+----------------------------------------------------------------------------
+[10:24:15] AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.060, budget=20.00%, total_packets=81413, baseline_rec=0.9400
+[10:24:15]   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[10:24:15]   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[10:24:15]   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[10:24:15]   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[10:24:15]   max_parity_budget=16282 packets
+[10:24:15]   LOD 0: 33 candidates (gaussians=1)
+[10:24:15]   LOD 1: 33 candidates (gaussians=356)
+[10:24:15]   LOD 2: 33 candidates (gaussians=5967)
+[10:24:15]   LOD 3: 3 candidates (gaussians=450621)
+[10:24:15]   DP result: best_benefit=29.170060, best_parity=16273/16282 (19.99%)
+[10:24:15]   LOD 0: RS(2,1) recovery=0.9964 parity=1 (vs baseline 0.9400)
+[10:24:15]   LOD 1: RS(8,8) recovery=0.9400 parity=0 (vs baseline 0.9400)
+[10:24:15]   LOD 2: RS(12,10) recovery=0.9684 parity=214 (vs baseline 0.9400)
+[10:24:15]   LOD 3: RS(12,10) recovery=0.9684 parity=16058 (vs baseline 0.9400)
+[10:24:15]   Final: overhead=19.99%, wrr=0.9684 (baseline=0.9400, Δ=+0.0284)
+
+  策略                    额外带宽       发送量(MB)       WRR       模拟恢复率  各 LOD 配置
+  ──────────────  ──────────  ────────────  ────────  ──────────  ──────────────────────────────
+  UEP_POLICY          12.51%       121.6 MB    0.9023      0.9790  L0:RS( 2, 1) | L1:RS(10, 8) | L2:RS( 9, 8) | L3:RS( 9, 8)
+  DP Optimizer        19.99%       129.7 MB    0.9684      0.9941  L0:RS( 2, 1) | L1:  (no-FEC) | L2:RS(12,10) | L3:RS(12,10)
+
+  📦 原始数据: 108.1 MB (113,322,360 bytes)
+  📊 DP 策略额外发送: 21.6 MB ( 19.99%)
+  📊 UEP 策略额外发送: 13.5 MB ( 12.51%)
+  🔄 DP 恢复率 vs 无 FEC (94%): Δ=+0.0541
+  🔄 UEP 恢复率 vs 无 FEC (94%): Δ=+0.0390
+----------------------------------------------------------------------------
+  ▸ 丢包率 = 10%
+----------------------------------------------------------------------------
+[10:24:18] AnalyticalOptimizer.optimize: K=4 LODs, loss_rate=0.100, budget=20.00%, total_packets=81413, baseline_rec=0.9000
+[10:24:18]   LOD 0: 1 packets, 1 gaussians, weight=1.0000
+[10:24:18]   LOD 1: 64 packets, 356 gaussians, weight=0.5000
+[10:24:18]   LOD 2: 1064 packets, 5967 gaussians, weight=0.3333
+[10:24:18]   LOD 3: 80284 packets, 450621 gaussians, weight=0.2500
+[10:24:18]   max_parity_budget=16282 packets
+[10:24:18]   LOD 0: 31 candidates (gaussians=1)
+[10:24:18]   LOD 1: 31 candidates (gaussians=356)
+[10:24:18]   LOD 2: 31 candidates (gaussians=5967)
+[10:24:18]   LOD 3: 1 candidates (gaussians=450621)
+[10:24:18]   DP result: best_benefit=11.270402, best_parity=565/16282 (0.69%)
+[10:24:18]   LOD 0: RS(2,1) recovery=0.9900 parity=1 (vs baseline 0.9000)
+[10:24:18]   LOD 1: RS(12,8) recovery=0.9957 parity=32 (vs baseline 0.9000)
+[10:24:18]   LOD 2: RS(12,8) recovery=0.9957 parity=532 (vs baseline 0.9000)
+[10:24:18]   LOD 3: RS(8,8) recovery=0.9000 parity=0 (vs baseline 0.9000)
+[10:24:18]   Final: overhead=0.69%, wrr=0.9018 (baseline=0.9000, Δ=+0.0018)
+
+  策略                    额外带宽       发送量(MB)       WRR       模拟恢复率  各 LOD 配置
+  ──────────────  ──────────  ────────────  ────────  ──────────  ──────────────────────────────
+  UEP_POLICY          12.51%       121.6 MB    0.7751      0.9480  L0:RS( 2, 1) | L1:RS(10, 8) | L2:RS( 9, 8) | L3:RS( 9, 8)
+  DP Optimizer         0.69%       108.8 MB    0.9018      0.9014  L0:RS( 2, 1) | L1:RS(12, 8) | L2:RS(12, 8) | L3:  (no-FEC)
+
+  📦 原始数据: 108.1 MB (113,322,360 bytes)
+  📊 DP 策略额外发送: 0.8 MB (  0.69%)
+  📊 UEP 策略额外发送: 13.5 MB ( 12.51%)
+  🔄 DP 恢复率 vs 无 FEC (90%): Δ=+0.0014
+  🔄 UEP 恢复率 vs 无 FEC (90%): Δ=+0.0480
+
+============================================================================
+  汇总对比
+============================================================================
+
+       丢包率  策略                    额外带宽       WRR       高斯恢复率         有效高斯数
+  ────────  ──────────────  ──────────  ────────  ──────────  ────────────
+        3%  DP Optimizer        20.00%    0.9951      0.9992       456,564
+            UEP_POLICY          12.51%    0.9719      0.9943       454,335
+
+        6%  DP Optimizer        19.99%    0.9684      0.9941       454,258
+            UEP_POLICY          12.51%    0.9023      0.9790       447,360
+
+       10%  DP Optimizer         0.69%    0.9018      0.9014       411,871
+            UEP_POLICY          12.51%    0.7751      0.9480       433,186
+
+  结果已保存: /root/uep-gs/experiment01/results/fec_ml_bandwidth.json
+
